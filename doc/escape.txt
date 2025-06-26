@@ -1,0 +1,59 @@
+*escape.txt*	For Neovim version 0.5 and higher	Last change: 2025 Jun 26
+
+==============================================================================
+CONTENTS                                               *escape-contents*
+
+  1. Introduction..................................*escape-introduction*
+  2. Usage...............................................*escape-usage*
+  3. Configuration...............................*escape-configuration*
+
+==============================================================================
+1. Introduction                                  *escape-introduction*
+
+escape.nvim is a lightweight plugin that allows you to exit insert mode
+by pressing a combination of two keys (e.g., `jk`) in quick succession,
+without the usual delay associated with key mappings.
+
+==============================================================================
+2. Usage                                                   *escape-usage*
+
+Once installed, the plugin must be initialized via your `init.lua`.
+See |escape-configuration| for details.
+
+By default, typing `j` followed by `k`, or `k` followed by `j`, within 50
+milliseconds will exit insert mode. If the timeout is exceeded, the keys are
+inserted as normal characters.
+
+==============================================================================
+3. Configuration                                 *escape-configuration*
+
+To configure the plugin, call the `setup` function.
+
+>lua
+require('escape').setup({ ... options ... })
+<
+
+The following options are available:
+
+*key1*
+  (string) The first key for the combo.
+  Default: 'j'
+
+*key2*
+  (string) The second key for the combo.
+  Default: 'k'
+
+*timeout*
+  (number) The time window for the combo in milliseconds.
+  Default: 50
+
+Example:
+>lua
+require('escape').setup({
+  key1 = 'f',
+  key2 = 'd',
+  timeout = 40,
+})
+<
+
+vim:tw=78:ts=8:ft=help:norl:
